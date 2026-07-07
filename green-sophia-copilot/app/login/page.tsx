@@ -18,17 +18,17 @@ export default function LoginPage() {
     if (res.ok) {
       window.location.href = '/';
     } else {
-      setError('あいことばが違うみたい。もう一度確認してね');
+      setError('あいことばが一致しません。もう一度確認してください。');
       setBusy(false);
     }
   }
 
   return (
     <div className="container" style={{ maxWidth: 420, paddingTop: '12vh' }}>
-      <div className="card" style={{ textAlign: 'center' }}>
-        <span className="eyebrow">Welcome back!</span>
-        <h1>Green Sophia<br />SNS Copilot</h1>
-        <p className="muted">部員共通の「あいことば」を入れてね 🌿</p>
+      <div className="card">
+        <div className="eyebrow">Members Only</div>
+        <h1 style={{ fontSize: '2rem', lineHeight: 1.15 }}>Green Sophia<br />SNS Copilot</h1>
+        <p className="muted" style={{ marginTop: 10 }}>部員共通の「あいことば」を入力してください。</p>
         <div className="field" style={{ textAlign: 'left' }}>
           <input
             type="password"
@@ -39,12 +39,12 @@ export default function LoginPage() {
             autoFocus
           />
         </div>
-        {error && <p style={{ color: '#c0563a', fontSize: '.86rem' }}>{error}</p>}
+        {error && <p style={{ color: 'var(--flag)', fontSize: '.86rem' }}>{error}</p>}
         <button className="btn btn-primary" style={{ width: '100%' }} onClick={submit} disabled={busy}>
-          {busy ? 'ひらいています…' : 'ひらく'}
+          {busy ? '認証中…' : '入室する'}
         </button>
         <p className="muted" style={{ marginTop: 14, fontSize: '.78rem' }}>
-          あいことばが分からないときは代表かSNS班に聞いてね
+          あいことばが分からない場合は代表またはSNS班に確認してください。
         </p>
       </div>
     </div>

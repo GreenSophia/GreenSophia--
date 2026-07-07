@@ -47,13 +47,15 @@ export default async function MetricsPage() {
 
   return (
     <main className="container">
-      <span className="eyebrow">Inspire others</span>
-      <h1>📈 ひろげる（実績ノート）</h1>
-      <p className="muted">
-        月に一度、インサイトの数字をここに写しておこう。企業コラボの提案時に「メディアキット」として一瞬で出せるようになるよ。
+      <section className="masthead">
+        <div className="eyebrow">03 / Inspire</div>
+        <h1>実績ノート</h1>
+        <p className="lede">
+        月に一度、インサイトの数字をここに記録します。企業コラボの提案時に、そのままメディアキットとして出力できます。
       </p>
+      </section>
 
-      <div className="card tint-peach">
+      <div className="card">
         <h2>今月の数字を記録する</h2>
         <form action={saveMetric}>
           <div className="field" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
@@ -131,7 +133,7 @@ export default async function MetricsPage() {
       </div>
 
       {mediaKit && (
-        <div className="card tint-green">
+        <div className="card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <h2 style={{ margin: 0 }}>メディアキット用テキスト</h2>
             <CopyButton text={mediaKit} />

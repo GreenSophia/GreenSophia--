@@ -40,12 +40,14 @@ export default function AnalysisPromptPage() {
 
   return (
     <main className="container">
-      <span className="eyebrow">Look back, then leap.</span>
-      <h1>🔍 ふりかえりプロンプトメーカー</h1>
-      <p className="muted">
+      <section className="masthead">
+        <div className="eyebrow">02 / Act — 分析</div>
+        <h1>ふりかえりプロンプトメーカー</h1>
+        <p className="lede">
         Instagramのインサイト画面の数字をここに写すだけ。Claudeが分析と来月の作戦を返してくれる指示文をつくります。
-        数字は<a href="/metrics">「ひろげる」</a>にも記録しておくとメディアキットに使えるよ。
+        数字は<a href="/metrics">実績ノート</a>にも記録しておくと、メディアキットに転用できます。
       </p>
+      </section>
 
       <div className="card">
         <div className="field" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
@@ -90,16 +92,16 @@ export default function AnalysisPromptPage() {
         </div>
       </div>
 
-      <div className="card tint-sky">
+      <div className="card">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <h2 style={{ margin: 0 }}>できあがったプロンプト</h2>
           <button className="btn btn-primary btn-sm" onClick={copy}>
-            {copied ? 'コピーしたよ ✓' : 'コピーしてClaudeへ'}
+            {copied ? 'コピー完了' : 'Claudeへコピー'}
           </button>
         </div>
         <div className="prompt-out">{prompt}</div>
       </div>
-      {copied && <div className="toast">クリップボードにコピーしました 🌿</div>}
+      {copied && <div className="toast">クリップボードにコピーしました</div>}
     </main>
   );
 }

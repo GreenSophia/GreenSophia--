@@ -47,12 +47,14 @@ export default function PostPromptPage() {
 
   return (
     <main className="container">
-      <span className="eyebrow">Act with Green Sophia</span>
-      <h1>✍️ 投稿プロンプトメーカー</h1>
-      <p className="muted">
+      <section className="masthead">
+        <div className="eyebrow">02 / Act — 投稿</div>
+        <h1>投稿プロンプトメーカー</h1>
+        <p className="lede">
         選ぶだけで、Claudeに渡す「完璧な指示文」ができあがる。出てきた原稿は
-        <a href="/portal"> Canva棚</a> のテンプレに流し込もう。
+        <a href="/portal">Canva棚</a>のテンプレートに流し込みます。
       </p>
+      </section>
 
       <div className="card">
         <div className="field">
@@ -102,16 +104,16 @@ export default function PostPromptPage() {
         </div>
       </div>
 
-      <div className="card tint-green">
+      <div className="card">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <h2 style={{ margin: 0 }}>できあがったプロンプト</h2>
           <button className="btn btn-primary btn-sm" onClick={copy}>
-            {copied ? 'コピーしたよ ✓' : 'コピーしてClaudeへ'}
+            {copied ? 'コピー完了' : 'Claudeへコピー'}
           </button>
         </div>
         <div className="prompt-out">{prompt}</div>
       </div>
-      {copied && <div className="toast">クリップボードにコピーしました 🌿</div>}
+      {copied && <div className="toast">クリップボードにコピーしました</div>}
     </main>
   );
 }

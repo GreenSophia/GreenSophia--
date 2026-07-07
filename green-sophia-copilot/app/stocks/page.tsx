@@ -5,9 +5,9 @@ export const dynamic = 'force-dynamic';
 
 const TABS = [
   { key: 'all', label: 'すべて' },
-  { key: 'design', label: '🖼 参考デザイン' },
-  { key: 'sponsor', label: '🤝 スポンサー候補' },
-  { key: 'inbox', label: '💡 ひらめきメモ' },
+  { key: 'design', label: '参考デザイン' },
+  { key: 'sponsor', label: 'スポンサー候補' },
+  { key: 'inbox', label: 'ひらめきメモ' },
 ] as const;
 
 const TAG: Record<string, { cls: string; label: string }> = {
@@ -45,12 +45,14 @@ export default async function StocksPage({
 
   return (
     <main className="container">
-      <span className="eyebrow">Learn with us</span>
-      <h1>🌱 ためる棚</h1>
-      <p className="muted">
+      <section className="masthead">
+        <div className="eyebrow">01 / Learn</div>
+        <h1>ためる棚</h1>
+        <p className="lede">
         サークルのLINE Botに送ったものが、自動でここに集まります。
-        画像は「参考デザイン」、<b>「スポンサー」と書いてURLを送る</b>と「スポンサー候補」に入るよ。
+        画像は「参考デザイン」、<b>先頭に「スポンサー」と書いてURLを送る</b>と「スポンサー候補」に分類されます。
       </p>
+      </section>
 
       <div className="chips" style={{ marginBottom: 16 }}>
         {TABS.map((t) => (
@@ -62,7 +64,7 @@ export default async function StocksPage({
 
       {!stocks?.length ? (
         <div className="empty">
-          このカテゴリはまだ空っぽ。街で見かけた「いいな」をLINEに送っておこう 📮
+          このカテゴリにはまだ記録がありません。気になったものをLINE Botに送ると、ここに集まります。
         </div>
       ) : (
         <div className="card">

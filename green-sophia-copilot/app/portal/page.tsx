@@ -37,15 +37,17 @@ export default async function PortalPage() {
 
   return (
     <main className="container">
-      <span className="eyebrow">Our design shelf</span>
-      <h1>🎨 Canva棚</h1>
-      <p className="muted">
-        <a href="/prompts/post">つくる</a>でできた原稿を、ここのテンプレに流し込んで完成させよう。
+      <section className="masthead">
+        <div className="eyebrow">Reference — Canvaテンプレート</div>
+        <h1>Canva棚</h1>
+        <p className="lede">
+        <a href="/prompts/post">つくる</a>で生成した原稿を、ここのテンプレートに流し込んで仕上げます。
       </p>
+      </section>
 
       {!grouped.length ? (
         <div className="empty">
-          まだテンプレが登録されてないよ。下のフォームから、サークルのCanvaテンプレURLを追加してね 🎨
+          まだテンプレが登録されていません。下のフォームからCanvaテンプレートのURLを追加してください。
         </div>
       ) : (
         grouped.map((g) => (
@@ -71,7 +73,7 @@ export default async function PortalPage() {
         ))
       )}
 
-      <div className="card tint-green">
+      <div className="card">
         <h2>テンプレを追加する</h2>
         <form action={addTemplate}>
           <div className="field">

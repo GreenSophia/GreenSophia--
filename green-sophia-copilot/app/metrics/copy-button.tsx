@@ -13,9 +13,9 @@ export default function CopyButton({ text }: { text: string }) {
           setTimeout(() => setCopied(false), 1800);
         }}
       >
-        {copied ? 'コピーしたよ ✓' : 'コピーする'}
+        {copied ? 'コピー完了' : 'コピーする'}
       </button>
-      {copied && <div className="toast">クリップボードにコピーしました 🌿</div>}
+      {copied && <div className="toast">クリップボードにコピーしました</div>}
     </>
   );
 }

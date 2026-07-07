@@ -85,9 +85,9 @@ export async function POST(req: Request) {
             image_path: path,
             sent_by: sentBy,
           });
-          await lineReply(event.replyToken, '参考デザインとして棚に入れたよ 🖼✨\nアプリの「🌱ためる」で見られます');
+          await lineReply(event.replyToken, '参考デザインとして記録しました。アプリの「ためる」で確認できます。');
         } else {
-          await lineReply(event.replyToken, '保存に失敗しちゃった…もう一度送ってみて 🙏');
+          await lineReply(event.replyToken, '画像の保存に失敗しました。もう一度送ってください。');
         }
       }
       continue;
@@ -113,10 +113,10 @@ export async function POST(req: Request) {
       await supabase.from('stocks').insert({ type, url, note, sent_by: sentBy });
 
       const shelf =
-        type === 'sponsor' ? 'スポンサー候補 🤝' : type === 'design' ? '参考デザイン 🖼' : 'ひらめきメモ 💡';
+        type === 'sponsor' ? 'スポンサー候補' : type === 'design' ? '参考デザイン' : 'ひらめきメモ';
       await lineReply(
         event.replyToken,
-        `「${shelf}」の棚に入れたよ！\n${type === 'inbox' && url ? 'ヒント:「スポンサー」か「デザイン」を頭につけると自動で仕分けされるよ' : 'ナイス収集 ✨'}`
+        `「${shelf}」に記録しました。${type === 'inbox' && url ? '\n先頭に「スポンサー」または「デザイン」と書くと自動で分類されます。' : ''}`
       );
     }
   }
@@ -126,5 +126,5 @@ export async function POST(req: Request) {
 
 // LINEの疎通確認(Verify)用
 export async function GET() {
-  return NextResponse.json({ status: 'Green Sophia LINE webhook is alive 🌿' });
+  return NextResponse.json({ status: 'Green Sophia LINE webhook is alive' });
 }
