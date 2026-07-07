@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+/* ==========================================================
+   Green Sophia — Editorial Desk  (design v3)
+   環境調査団体の「編集デスク」: 野帳 × 新聞デスク × 標本ラベル
+   幼さを排し、静かで硬質な編集部の管理画面にする。
+   ルール:
+   - 筆記体・絵文字・パステルのにじみ・丸カードは使わない
+   - 仕切りはヘアラインとグリッドのみ
+   - 差し色(moss)は画面内で最小限に
+   ========================================================== */
+:root {
+  --ink:    #17201A;   /* ほぼ黒の墨。見出し・本文 */
+  --ink-2:  #43504A;   /* サブテキスト */
+  --moss:   #4A6B4E;   /* 差し色。ロゴ緑を沈めたトーン */
+  --moss-d: #33503A;
+  --paper:  #F4F1E9;   /* 生成りの紙 */
+  --panel:  #FBFAF5;   /* パネル面（紙より少し明るい） */
+  --rule:   #CFC8B6;   /* 罫線 */
+  --rule-2: #E4DECF;   /* 淡い罫線 */
+  --muted:  #7C7768;   /* キャプション */
+  --flag:   #B5482E;   /* 校正記号のような赤。ごく稀に警告のみ */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--moss); color: #fff; }
+
+a { color: var(--moss-d); text-decoration: none; border-bottom: 1px solid var(--rule); }
+a:hover { border-color: var(--moss); }
+
+/* ---------- タイポグラフィ ---------- */
+h1, h2, h3 { margin: 0; font-weight: 400; letter-spacing: .01em; }
+h1 {
+  font-family: 'Instrument Serif', 'Noto Serif JP', serif;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  line-height: 1.12; letter-spacing: 0;
+}
+h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.55rem; line-height: 1.2;
+}
+h3 { font-family: 'Zen Kaku Gothic New'; font-size: .98rem; font-weight: 700; }
+
+.serif-it { font-family: 'Instrument Serif', serif; font-style: italic; }
+
+/* index ラベル: 01 / LEARN  のような分類記号 */
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--moss);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+.mono { font-family: 'Space Mono', monospace; }
+.muted { color: var(--muted); }
+
+/* ---------- 野帳フレーム（signature） ---------- */
+.container {
+  max-width: 940px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 100px;
+  position: relative;
+}
+/* 左右の裁ち落とし罫 + 上部の薄い方眼 */
+.container::before, .container::after {
+  content: ''; position: fixed; top: 0; bottom: 0; width: 1px;
+  background: var(--rule-2); z-index: 0;
+}
+@media (min-width: 1040px) {
+  .container::before { left: calc(50% - 470px - 28px); }
+  .container::after  { right: calc(50% - 470px - 28px); }
+}
+
+/* ---------- ヘッダー（新聞のマストヘッド） ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--paper);
+  border-bottom: 1.5px solid var(--ink);
+}
+.site-header .inner {
+  max-width: 940px; margin: 0 auto;
+  padding: 14px clamp(16px, 4vw, 40px);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; border: none; }
+.brand .logo-script {
+  font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--ink);
+  letter-spacing: 0;
+}
+.brand .kicker {
+  font-family: 'Space Mono', monospace; font-size: .62rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+}
+.nav { display: flex; gap: 0; flex-wrap: wrap; }
+.nav a {
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-2); border: none; padding: 4px 14px;
+  border-left: 1px solid var(--rule);
+}
+.nav a:first-child { border-left: none; }
+.nav a:hover { color: var(--moss); background: var(--rule-2); }
+
+/* ---------- ページ見出しブロック ---------- */
+.masthead { padding: 46px 0 22px; border-bottom: 1.5px solid var(--ink); position: relative; z-index: 1; }
+.masthead .lede { max-width: 62ch; color: var(--ink-2); margin-top: 14px; font-size: 1.02rem; }
+
+/* ---------- カード / パネル ---------- */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  padding: 24px 26px;
+  margin: 22px 0;
+  position: relative; z-index: 1;
+}
+.card.tint-green, .card.tint-sky, .card.tint-peach { background: var(--panel); } /* 色分け廃止 */
+
+/* 3つの理念ブロックを、隙間なしの新聞コラムに */
+.card-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--ink); margin: 26px 0; position: relative; z-index: 1;
+}
+.card-grid > a { border: none; }
+.card-grid > a + a > .card { border-left: 1px solid var(--rule); }
+.card-grid .card { margin: 0; border: none; background: var(--panel); height: 100%; transition: background .12s; }
+.card-grid > a:hover .card { background: #fff; }
+@media (max-width: 680px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .card-grid > a + a > .card { border-left: none; border-top: 1px solid var(--rule); }
+}
+
+/* ---------- ボタン ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Space Mono', monospace; font-size: .78rem; letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 10px 18px; cursor: pointer;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink); border-radius: 0;
+  transition: background .12s, color .12s;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn-primary { background: var(--moss); border-color: var(--moss); color: #fff; }
+.btn-primary:hover { background: var(--moss-d); border-color: var(--moss-d); color: #fff; }
+.btn-sm { padding: 6px 12px; font-size: .7rem; }
+.btn:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+/* ---------- フォーム ---------- */
+.field { margin-bottom: 18px; }
+.field label {
+  display: block; font-size: .82rem; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+}
+.field .hint { font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--muted); font-weight: 400; margin-left: 8px; letter-spacing: .02em; }
+input[type="text"], input[type="number"], input[type="month"], input[type="url"],
+input[type="password"], select, textarea {
+  width: 100%; font-family: inherit; font-size: .92rem;
+  padding: 10px 12px; color: var(--ink);
+  background: #fff; border: 1px solid var(--rule); border-radius: 0;
+}
+textarea { min-height: 92px; resize: vertical; line-height: 1.7; }
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--moss); box-shadow: inset 0 0 0 1px var(--moss);
+}
+
+/* 選択チップ = 罫線タブ */
+.chips { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--rule); width: fit-content; max-width: 100%; }
+.chip {
+  padding: 7px 14px; cursor: pointer; background: #fff;
+  border: none; border-right: 1px solid var(--rule);
+  font-size: .82rem; font-weight: 500; color: var(--ink-2); user-select: none;
+}
+.chip:last-child { border-right: none; }
+.chip.on { background: var(--moss); color: #fff; }
+
+/* ---------- ラベル / タグ ---------- */
+.tag {
+  display: inline-block; padding: 2px 8px;
+  font-family: 'Space Mono', monospace; font-size: .64rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  border: 1px solid var(--ink); color: var(--ink); background: transparent;
+}
+.tag-design  { border-color: var(--moss); color: var(--moss); }
+.tag-sponsor { border-color: #8A6D2B; color: #8A6D2B; }
+.tag-inbox   { border-color: var(--muted); color: var(--muted); }
+
+/* ---------- プロンプト出力 ---------- */
+.prompt-out {
+  background: #fff; border: 1px solid var(--rule); border-top: 2px solid var(--ink);
+  padding: 18px; font-family: 'Space Mono', monospace; font-size: .8rem; line-height: 1.65;
+  white-space: pre-wrap; max-height: 400px; overflow-y: auto; color: var(--ink);
+}
+
+/* ---------- テーブル ---------- */
+.table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.table th {
+  text-align: left; font-family: 'Space Mono', monospace; font-size: .66rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700;
+  border-bottom: 1.5px solid var(--ink); padding: 8px 10px;
+}
+.table td { border-bottom: 1px solid var(--rule-2); padding: 11px 10px; }
+.table tr:hover td { background: var(--rule-2); }
+
+/* ---------- ストック一覧 ---------- */
+.stock-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--rule-2); }
+.stock-item:last-child { border-bottom: none; }
+.stock-item img { width: 84px; height: 84px; object-fit: cover; border: 1px solid var(--rule); }
+.stock-meta { font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--muted); }
+
+/* ---------- 区切り ---------- */
+.divider-leaf {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--ink); margin: 40px 0 20px; height: 0;
+}
+.divider-leaf span {
+  position: absolute; top: -.75em; left: 0; background: var(--paper);
+  padding-right: 14px; font-family: 'Space Mono', monospace;
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+
+.empty {
+  padding: 40px 20px; text-align: center; color: var(--muted);
+  border: 1px dashed var(--rule); font-size: .9rem; background: var(--panel);
+}
+
+.toast {
+  position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--paper);
+  font-family: 'Space Mono', monospace; font-size: .78rem; letter-spacing: .04em;
+  padding: 11px 20px; z-index: 50;
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
